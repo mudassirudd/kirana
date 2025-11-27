@@ -17,9 +17,10 @@ export default function Home(){
 
       
       const productList = products.map(product=>(
-       <Link  to = {`/products/${product._id}`} key={product._id}> 
+       <Link  to = {`/products/${product._id}`}
+              key={product._id}> 
            <ProductCard  product={product}/>
-           </Link>
+       </Link>
        
       ))
       console.log(products)
