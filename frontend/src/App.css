@@ -1,17 +1,16 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #2f2f2f;
   color: aliceblue;
-  min-height: 100vh;
+  min-height: 99vh;
 }
 body {
   background-color: #1a1a1a;
+  margin: 0;
 }
 a {
   color: #c2dfda;
@@ -30,4 +29,65 @@ a {
 }
 .product-card img {
   width: 100%;
+}
+.product-page {
+  border: 1px solid #1a1a1a;
+  width: 300px;
+  max-width: 100%;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.product-page img {
+  width: 100%;
+}
+
+/* Navigation bar (full-width, black) */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Link buttons (login / register) */
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  transition: background-color 120ms ease, transform 120ms ease,
+    border-color 120ms ease;
+}
+
+/* Hover / focus */
+.navbar a:hover,
+.navbar a:focus {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  .navbar a {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.9rem;
+  }
 }
