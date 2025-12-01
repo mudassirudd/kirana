@@ -22,17 +22,34 @@ export async function registerUser(req, res) {
     const hashedPassword = await bcrypt.hash(password, 10)
 
     // save user
-    await User.create({
+    const user = await User.create({
       email: email,
       password: hashedPassword,
     })
+    // jwt generation
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: '3d',
+      }
+    )
     // respond success
-    res.status(201).json({ message: 'User created' })
+    res.status(201).json({
+      message: 'User created',
+      token,
+      user: {
+        _id: user._id,
+        role: user.role,
+        email,
+      },
+    })
   } catch (error) {
     // error
     res.status(500).json({ error: 'Server error' })
   }
 }
+
 export async function loginUser(req, res) {
   try {
     const { email, password } = req.body
@@ -53,7 +70,7 @@ export async function loginUser(req, res) {
     }
     // generate jwt
     const token = jwt.sign(
-      { email, id: foundUser._id },
+      { id: foundUser._id, role: foundUser.role },
       process.env.JWT_SECRET_KEY,
       { expiresIn: '3d' }
     )
@@ -63,8 +80,9 @@ export async function loginUser(req, res) {
       message: 'Logged in',
       token,
       user: {
-        email,
-        id: foundUser._id,
+        email: foundUser.email,
+        _id: foundUser._id,
+        role: foundUser.role,
       },
     })
   } catch (error) {
