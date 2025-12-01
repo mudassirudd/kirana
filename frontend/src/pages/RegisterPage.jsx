@@ -1,9 +1,14 @@
 
 import React from "react"
+import {useNavigate} from 'react-router-dom'
+
+
 
 export default function RegisterPage() {
   const [error,setError] = React.useState(null)
   const [success,setSuccess] = React.useState(null)
+    const navigate = useNavigate()
+
 
 
 
@@ -31,6 +36,7 @@ export default function RegisterPage() {
     }
     console.log("rssesponse:",data)
     setSuccess("Registration Successful")
+    navigate("/")
   }
  return(
   
@@ -38,12 +44,12 @@ export default function RegisterPage() {
     <h2>Register with us</h2>
   <form action={register} > 
   <label htmlFor="email">Email:
-  <input type="email" name="email"  required/>
+  <input type="email" name="email"  id="email" required/>
 
   </label>
   <label htmlFor="password">Password:
 
-  <input type="password" name="password"  required/>
+  <input type="password" name="password" id="passsword"  required/>
   </label>
   <button type="submit">Register</button>
   
