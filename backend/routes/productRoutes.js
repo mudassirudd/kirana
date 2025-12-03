@@ -13,7 +13,7 @@ const productRouter = express.Router()
 
 productRouter.get('/', getProducts)
 productRouter.get('/:id', getProductById)
-productRouter.post('/:id', auth, adminOnly, createProduct)
+productRouter.post('/', auth, adminOnly, createProduct)
 productRouter.put('/:id', auth, adminOnly, updateProduct)
 productRouter.delete('/:id', auth, adminOnly, deleteProduct)
 
