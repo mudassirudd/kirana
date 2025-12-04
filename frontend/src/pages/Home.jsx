@@ -9,7 +9,7 @@ export default function Home(){
         async function fetchProducts() {
           const res = await fetch('http://localhost:5000/products')
           const data = await res.json()
-          setProducts( data )
+          setProducts( data.products )
         }
 
         fetchProducts()

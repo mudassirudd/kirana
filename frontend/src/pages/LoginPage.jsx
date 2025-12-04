@@ -1,5 +1,5 @@
 import React from 'react'
-import {useAuth} from '../context/AuthContext'
+import {useAuth} from '../hooks/useAuth'
 
 export default function LoginPage() {
   const [error,setError]= React.useState()
