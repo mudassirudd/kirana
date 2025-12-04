@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 export default function ProductPage(){
 
   const {id}= useParams()
-  console.log(id)
+  // console.log(id)
   
   const [product,setProduct] = React.useState(null)
   const [loading,setLoading] = React.useState(true)
@@ -22,7 +22,7 @@ export default function ProductPage(){
         
       }
       const data = await res.json()
-      setProduct(data)
+      setProduct(data.product)
     } catch (err){
       setError(err.message)
     }finally{
