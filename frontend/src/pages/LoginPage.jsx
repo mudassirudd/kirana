@@ -1,16 +1,21 @@
 import React from 'react'
+import {useAuth} from '../context/AuthContext'
 
 export default function LoginPage() {
   const [error,setError]= React.useState()
-  const [success,setSuccess]= React.useState()
+  const {login} = useAuth()
   
-  async function login(formData) {
+  async function handleLogin(formData) {
     setError(null)
-    setSuccess(null)
     const email=formData.get("email")
     const password = formData.get("password")
 
-    
+    const result = await login(email,password)
+
+
+    if (result.error) {
+      return setError(result.error)
+    }
 
 
   }
@@ -18,7 +23,7 @@ export default function LoginPage() {
     
    <div className="registration-form">
     <h2>Login</h2>
-  <form action={login} > 
+  <form action={handleLogin} > 
   <label htmlFor="email">Email:
   <input type="email" name="email" id='email' required/>
 
@@ -30,7 +35,6 @@ export default function LoginPage() {
   <button type="submit">Login</button>
   
  {error && <p style={{ color: "red" }}>{error}</p>}
-{success && <p style={{ color: "green" }}>{success}</p>}
 
 
   </form>
