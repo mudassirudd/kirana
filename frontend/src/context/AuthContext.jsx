@@ -11,6 +11,7 @@ export function AuthProviderComponent ({children}){
 });
 
   const [token, setToken] = useState(() => localStorage.getItem('token') || null);
+
   const navigate = useNavigate()
 
 
@@ -19,6 +20,7 @@ export function AuthProviderComponent ({children}){
   
   // LOGIN
   async function login(email,password) {
+
     const res = await fetch ("http://localhost:5000/auth/login",{
       method:"POST",
       body:JSON.stringify({email,password}),
@@ -54,9 +56,16 @@ export function AuthProviderComponent ({children}){
     return login(email,password)
 
   }
+  //LOGOUT 
+  function logout() {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    setToken(null)
+    setUser(null)
+  }
 
   return(
-    <AuthContext.Provider value={{user,token,login,register}}>
+    <AuthContext.Provider value={{user,token,login,register,logout}}>
       {children}
     </AuthContext.Provider>
   )

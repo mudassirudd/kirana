@@ -1,5 +1,5 @@
 export default function ProductCard({product}){
-  console.log(product.image)
+  // console.log(product.image)
   return(
     <>
       <div className="product-card">

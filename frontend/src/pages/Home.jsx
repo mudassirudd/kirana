@@ -23,9 +23,10 @@ export default function Home(){
        </Link>
        
       ))
-      console.log(products)
+      // console.log(products)
 
   return(
+    
     <>
       {productList}
     </>
