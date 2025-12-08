@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import CreateProduct from './pages/CreateProduct'
 import AdminRoute from './components/AdminRoute'
 import AdminProductsPage from './pages/AdminProductsPage'
+import EditProductPage from './pages/EditProductPage'
 
 
 
@@ -53,19 +54,29 @@ export default function App() {
           <ProductPage/>
         </ProtectedRoute>
         }/>
+
       <Route path='/auth/register' element={<RegisterPage/>}/>
       <Route path='/auth/login' element={<LoginPage/>}/>
-         <Route path='/admin/create-product' element={
-        <AdminRoute>
-          <CreateProduct/>
-        </AdminRoute>
-        }/>
+
+      <Route path='/admin/create-product' element={
+          <AdminRoute>
+            <CreateProduct/>
+          </AdminRoute>
+       }/>
 
         <Route path="/admin/products" element={
           <AdminRoute>
             <AdminProductsPage/>
           </AdminRoute>
         }/>
+
+        <Route
+         path='/admin/products/:id/edit'
+         element={
+          <AdminRoute>
+            <EditProductPage/>
+          </AdminRoute>
+        } />
     </Routes>
     </>
   )

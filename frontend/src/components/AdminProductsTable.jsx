@@ -1,4 +1,6 @@
-export default function AdminProductsTable({products,handleDelete,handleEdit}) {
+import { Link } from "react-router-dom"
+
+export default function AdminProductsTable({products,handleDelete}) {
   return(
     
          <table>
@@ -16,7 +18,10 @@ export default function AdminProductsTable({products,handleDelete,handleEdit}) {
             <td>{prod.name}</td>
             <td>{prod.price}</td>
             <td>
-              <button onClick={()=>handleEdit(prod._id)}>Edit</button>
+              <Link to={`/admin/products/${prod._id}/edit`}>
+              <button>Edit</button>
+              </Link>
+
               <button onClick={()=>handleDelete(prod._id)}>Delete</button>
               </td>
 

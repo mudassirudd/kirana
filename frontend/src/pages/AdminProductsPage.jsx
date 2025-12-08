@@ -54,10 +54,7 @@ export default function AdminProductsPage() {
    
   }
   
-  
-  async function handleEdit(id) {
-    
-  }
+ 
   
   return(
     <>
@@ -71,7 +68,6 @@ export default function AdminProductsPage() {
       <AdminProductsTable
       products={products}
       handleDelete={handleDelete}
-      handleEdit={handleEdit} 
       />
     }
     {error && <p style={{color:"red"}}>{error}</p>}
