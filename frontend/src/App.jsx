@@ -9,6 +9,7 @@ import {useAuth} from './hooks/useAuth'
 import ProtectedRoute from './components/ProtectedRoute'
 import CreateProduct from './pages/CreateProduct'
 import AdminRoute from './components/AdminRoute'
+import AdminProductsPage from './pages/AdminProductsPage'
 
 
 
@@ -32,7 +33,10 @@ export default function App() {
       <Link onClick={logout}>Logout</Link>
 
       {user?.role==='admin' && 
-        <Link to="/admin/create-product">Create</Link>
+       <>
+         <Link to="/admin/create-product">Create</Link>
+        <Link to="/admin/products">Products List</Link>
+       </>
       }
 
       </>
@@ -55,7 +59,12 @@ export default function App() {
         <AdminRoute>
           <CreateProduct/>
         </AdminRoute>
-        
+        }/>
+
+        <Route path="/admin/products" element={
+          <AdminRoute>
+            <AdminProductsPage/>
+          </AdminRoute>
         }/>
     </Routes>
     </>
