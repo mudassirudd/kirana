@@ -80,7 +80,7 @@ a {
   outline: none;
 }
 
-.registration-form form,
+form,
 .login-form {
   display: flex;
   flex-direction: column;
@@ -95,7 +95,7 @@ a {
   border-radius: 8px;
   background-color: #3a3a3a;
 }
-.registration-form input,
+form input,
 .login-form input {
   padding: 0.5rem;
   border-radius: 4px;
@@ -103,7 +103,7 @@ a {
   background-color: #2f2f2f;
   color: #eee;
 }
-.registration-form button,
+form button,
 .login-form button {
   padding: 0.5rem 1rem;
   border: none;
@@ -111,7 +111,7 @@ a {
   background-color: #2f2f2f;
   color: #eee;
 }
-.registration-form button:hover,
+form button:hover,
 .login-form button:hover {
   background-color: #444;
   cursor: pointer;

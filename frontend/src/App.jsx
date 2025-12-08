@@ -7,6 +7,8 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import {useAuth} from './hooks/useAuth'
 import ProtectedRoute from './components/ProtectedRoute'
+import CreateProduct from './pages/CreateProduct'
+import AdminRoute from './components/AdminRoute'
 
 
 
@@ -26,7 +28,13 @@ export default function App() {
       <>
       <Link to='/'>Home</Link>
       <span>Welcome, {user?.email}</span>
-      <a onClick={logout}>Logout</a>
+
+      <Link onClick={logout}>Logout</Link>
+
+      {user?.role==='admin' && 
+        <Link to="/admin/create-product">Create</Link>
+      }
+
       </>
       }
     </nav>
@@ -36,9 +44,19 @@ export default function App() {
           <Home/>
         </ProtectedRoute>
         }/>
-      <Route path='/products/:id' element={<ProductPage/>}/>
+      <Route path='/products/:id' element={
+        <ProtectedRoute>
+          <ProductPage/>
+        </ProtectedRoute>
+        }/>
       <Route path='/auth/register' element={<RegisterPage/>}/>
       <Route path='/auth/login' element={<LoginPage/>}/>
+         <Route path='/admin/create-product' element={
+        <AdminRoute>
+          <CreateProduct/>
+        </AdminRoute>
+        
+        }/>
     </Routes>
     </>
   )
