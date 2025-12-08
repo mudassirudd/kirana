@@ -1,4 +1,4 @@
-export default function AdminProductsTable({products}) {
+export default function AdminProductsTable({products,handleDelete,handleEdit}) {
   return(
     
          <table>
@@ -16,8 +16,8 @@ export default function AdminProductsTable({products}) {
             <td>{prod.name}</td>
             <td>{prod.price}</td>
             <td>
-              <button>Edit</button>
-              <button>Delete</button>
+              <button onClick={()=>handleEdit(prod._id)}>Edit</button>
+              <button onClick={()=>handleDelete(prod._id)}>Delete</button>
               </td>
 
           </tr>
