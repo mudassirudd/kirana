@@ -2,7 +2,7 @@ import {  createContext, useEffect, useState } from "react";
 import {useAuth} from '../hooks/useAuth'
 
 
-const CartContext = createContext()
+export const CartContext = createContext()
 
 export  function CartContextProvider ({children}) {
   const [cart,setCart] = useState([])

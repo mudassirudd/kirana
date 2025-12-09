@@ -1,8 +1,9 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import { useCart } from '../hooks/useCart'
 
 export default function ProductPage(){
-
+  const {addToCart} = useCart()
   const {id}= useParams()
   // console.log(id)
   
@@ -45,6 +46,7 @@ export default function ProductPage(){
       <h2>{product.name}</h2>
       <p>{product.description}</p>
       <strong>₹{product.price}</strong>
+      <button onClick={()=>addToCart(product)}>Add to Cart</button>
     </div>
   )
 }
