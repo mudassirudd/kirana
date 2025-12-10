@@ -116,3 +116,31 @@ form button:hover,
   background-color: #444;
   cursor: pointer;
 }
+
+table {
+  width: 80%;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  background-color: #3a3a3a;
+}
+table th,
+table td {
+  border: 1px solid #555;
+  padding: 0.75rem;
+  text-align: left;
+}
+table button {
+  margin: 0 0.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: poppins, sans-serif;
+  font-size: 1.1rem;
+}
+
+.counter {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.5rem;
+}
