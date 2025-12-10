@@ -12,11 +12,18 @@ import AdminRoute from './components/AdminRoute'
 import AdminProductsPage from './pages/AdminProductsPage'
 import EditProductPage from './pages/EditProductPage'
 import CartPage from './pages/CartPage'
+import { useCart } from './hooks/useCart'
 
 
 
 export default function App() {
   const {user,logout,token} = useAuth()
+
+  const {cart} = useCart()
+
+   const totalItems = cart.reduce((sum,item)=>{
+    return sum+item.quantity
+  },0)
   
   return (
     <>
@@ -31,7 +38,9 @@ export default function App() {
       <>
       <Link to='/'>🏠</Link>
       <span>Welcome, {user?.email}</span>
-      <Link to='/cart'>🛒</Link>
+      <Link to='/cart' style={{position:"relative"}}>
+        🛒 {totalItems > 0 && <span className='badge'>{totalItems}</span>}
+      </Link>
 
       <Link onClick={logout}>Logout</Link>
 

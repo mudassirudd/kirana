@@ -144,3 +144,12 @@ table button {
   align-items: center;
   gap: 0.5rem;
 }
+
+.badge {
+  position: absolute;
+  background-color: red;
+  width: 15px;
+  border-radius: 50%;
+  right: 0;
+  top: 0;
+}

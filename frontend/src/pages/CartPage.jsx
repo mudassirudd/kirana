@@ -6,10 +6,11 @@ export default function CartPage() {
   const total= cart.reduce((sum,item)=>{
     return sum + item.price * item.quantity
   },0)
-
-  const totalItems = cart.reduce((sum,item)=>{
+  
+ const totalItems = cart.reduce((sum,item)=>{
     return sum+item.quantity
   },0)
+ 
 
 if (cart.length === 0)return <p>Your cart is empty.</p> 
   return(
