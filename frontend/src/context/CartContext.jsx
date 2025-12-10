@@ -1,19 +1,19 @@
 import {  createContext, useEffect, useState } from "react";
-import {useAuth} from '../hooks/useAuth'
+// import {useAuth} from '../hooks/useAuth'
 
 
 export const CartContext = createContext()
 
 export  function CartContextProvider ({children}) {
   const [cart,setCart] = useState([])
-  const {token} = useAuth()
+  // const {token} = useAuth()
 
 
-useEffect(() => {
-  if (!token) {
-    localStorage.removeItem("cart")
-  }
-}, [token])
+// useEffect(() => {
+//   if (!token) {
+//     localStorage.removeItem("cart")
+//   }
+// }, [token])
 
 
   useEffect(()=>{

@@ -1,9 +1,11 @@
 import {createContext,useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import { useCart } from '../hooks/useCart';
 
 export const AuthContext = createContext()
 
 export function AuthProviderComponent ({children}){
+  const {clearCart} = useCart()
   //restore session
  const [user, setUser] = useState(() => {
   const raw = localStorage.getItem("user");
@@ -60,6 +62,9 @@ export function AuthProviderComponent ({children}){
   function logout() {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
+    localStorage.removeItem('cart')
+    clearCart()
+
     setToken(null)
     setUser(null)
   }
