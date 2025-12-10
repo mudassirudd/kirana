@@ -11,6 +11,7 @@ import CreateProduct from './pages/CreateProduct'
 import AdminRoute from './components/AdminRoute'
 import AdminProductsPage from './pages/AdminProductsPage'
 import EditProductPage from './pages/EditProductPage'
+import CartPage from './pages/CartPage'
 
 
 
@@ -28,14 +29,15 @@ export default function App() {
       }
       {token &&
       <>
-      <Link to='/'>Home</Link>
+      <Link to='/'>🏠</Link>
       <span>Welcome, {user?.email}</span>
+      <Link to='/cart'>🛒</Link>
 
       <Link onClick={logout}>Logout</Link>
 
       {user?.role==='admin' && 
        <>
-         <Link to="/admin/create-product">Create</Link>
+         <Link to="/admin/create-product">Create Product</Link>
         <Link to="/admin/products">Products List</Link>
        </>
       }
@@ -53,6 +55,11 @@ export default function App() {
         <ProtectedRoute>
           <ProductPage/>
         </ProtectedRoute>
+        }/>
+        <Route path='/cart' element={
+          <ProtectedRoute>
+            <CartPage/>
+          </ProtectedRoute>
         }/>
 
       <Route path='/auth/register' element={<RegisterPage/>}/>
