@@ -1,22 +1,50 @@
-import {  createContext, useEffect, useState } from "react";
-// import {useAuth} from '../hooks/useAuth'
+import {  createContext, useEffect,  useReducer} from "react";
 
 
 export const CartContext = createContext()
 
+function cartReducer(state,action) {
+  switch (action.type) {
+    case "ADD":
+      const exists = state.find(item=>item._id === action.payload._id)
+        if (exists) {
+          return state.map(item=>item._id ===action.payload._id
+            ? {...item,quantity:item.quantity + 1}: item)
+        }else{
+         return  [...state,{...action.payload,quantity:1}]
+        }
+
+    case "REMOVE":
+             return state.filter(item=>item._id !== action.payload)
+             
+             
+    case "UPDATE_QTY":
+      if (action.payload.quantity === 0 ) {
+        return state.filter(item=>item._id !== action.payload.id)  
+      }else{
+        return state.map(item=>item._id === action.payload.id
+          ? {...item,quantity:action.payload.quantity }: item
+         )
+      }
+
+
+    case "CLEAR":
+      return []
+    
+    default:
+      return state
+  }
+}
+
 export  function CartContextProvider ({children}) {
-  const [cart,setCart] = useState(()=>{
+  const [cart,dispatch] = useReducer(cartReducer,[],()=>{
     const saved = localStorage.getItem("cart")
     return saved? JSON.parse(saved):[]
   })
-  // const {token} = useAuth()
 
 
-// useEffect(() => {
-//   if (!token) {
-//     localStorage.removeItem("cart")
-//   }
-// }, [token])
+ 
+  
 
 
   useEffect(()=>{
@@ -25,36 +53,20 @@ export  function CartContextProvider ({children}) {
   },[cart])
 
   function addToCart(product) {
-    const exists = cart.find(item=>item._id === product._id)
-
-    if (exists) {
-      setCart(prev=>
-        prev.map(item=>
-          item._id===product._id?
-        {...item,quantity:item.quantity+1}:item
-      ))
-    }else{
-      setCart(prev=>[...prev,{...product,quantity:1}])
-    }
+dispatch({type:"ADD",payload:product})
+ 
   }
 
   function removeFromCart(id) {
-    setCart(prev=>prev.filter(item=>item._id !== id))
-  }
+    dispatch({type:"REMOVE",payload:id})  }
 
-  function updateQty(id,qty) {
-    if (qty === 0 ) {
-      removeFromCart(id)
-      return
-    }
-    setCart(prev=>prev.map(item=>item._id === id 
-      ? {...item,quantity:qty}: item
-    ))
+  function updateQty(id,quantity) {
+ 
+   dispatch({type:"UPDATE_QTY",payload:{id,quantity}})
   }
 
   function clearCart() {
-    setCart([])
-    localStorage.removeItem("cart")
+   dispatch({type:"CLEAR"})
 
     
   }
