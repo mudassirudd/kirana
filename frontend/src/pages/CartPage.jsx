@@ -1,7 +1,17 @@
 import {useCart} from '../hooks/useCart'
+import {useAuth} from '../hooks/useAuth'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+
 
 export default function CartPage() {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+
+  const {token} = useAuth()
   const {cart,updateQty,clearCart,removeFromCart} =useCart()
+  const navigate = useNavigate()
 
   const total= cart.reduce((sum,item)=>{
     return sum + item.price * item.quantity
@@ -10,6 +20,43 @@ export default function CartPage() {
  const totalItems = cart.reduce((sum,item)=>{
     return sum+item.quantity
   },0)
+  
+
+  async function order() {
+   try {
+    setLoading(true)
+    //make itms
+    const items = cart.map(item=>{
+    return {
+      productId:item._id,
+      quantity:item.quantity
+    }
+  })
+     const res = await fetch("http://localhost:5000/order",{
+      method:"POST",
+      body:JSON.stringify({items}),
+      headers:{
+        "Content-Type":"application/json",
+         Authorization:`Bearer ${token}`
+      }
+    })
+
+    const data = await res.json()
+    if (res.ok) {
+      clearCart()
+      navigate("/order/orders")
+    }
+    if (!res.ok) {
+      setError(data.error)
+      return
+    }
+    
+   }   finally{
+          setLoading(false)
+
+      }
+
+  }
  
 
 if (cart.length === 0)return <p>Your cart is empty.</p> 
@@ -55,6 +102,11 @@ if (cart.length === 0)return <p>Your cart is empty.</p>
 
           <p>Your Total: <strong>₹{total}</strong></p>
           <p>Total items: <strong>{totalItems}</strong></p>
+          <button onClick={order}>Order</button>
+            {loading && <p>Loading...</p>}
+
+              {error && <p style={{color:"red"}}>{error}</p>}
+
 
     </>
   )

@@ -48,12 +48,11 @@ export  function CartContextProvider ({children}) {
 
 
   useEffect(()=>{
-
     localStorage.setItem("cart",JSON.stringify(cart))
   },[cart])
 
   function addToCart(product) {
-dispatch({type:"ADD",payload:product})
+    dispatch({type:"ADD",payload:product})
  
   }
 
@@ -61,14 +60,11 @@ dispatch({type:"ADD",payload:product})
     dispatch({type:"REMOVE",payload:id})  }
 
   function updateQty(id,quantity) {
- 
    dispatch({type:"UPDATE_QTY",payload:{id,quantity}})
   }
 
   function clearCart() {
    dispatch({type:"CLEAR"})
-
-    
   }
 
 

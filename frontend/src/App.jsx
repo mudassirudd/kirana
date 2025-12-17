@@ -12,6 +12,7 @@ import AdminRoute from './components/AdminRoute'
 import AdminProductsPage from './pages/AdminProductsPage'
 import EditProductPage from './pages/EditProductPage'
 import CartPage from './pages/CartPage'
+import OrdersPage from './pages/OrdersPage'
 import { useCart } from './hooks/useCart'
 
 
@@ -37,16 +38,18 @@ export default function App() {
       {token &&
       <>
       <Link to='/'>🏠</Link>
+
       <span>Welcome, {user?.email}</span>
+
       <Link to='/cart' style={{position:"relative"}}>
         🛒 {totalItems > 0 && <span className='badge'>{totalItems}</span>}
       </Link>
-
+      <Link to="/order/orders">Orders</Link>
       <Link onClick={logout}>Logout</Link>
 
       {user?.role==='admin' && 
        <>
-         <Link to="/admin/create-product">Create Product</Link>
+        <Link to="/admin/create-product">Create Product</Link>
         <Link to="/admin/products">Products List</Link>
        </>
       }
@@ -72,6 +75,7 @@ export default function App() {
         }/>
 
       <Route path='/auth/register' element={<RegisterPage/>}/>
+
       <Route path='/auth/login' element={<LoginPage/>}/>
 
       <Route path='/admin/create-product' element={
@@ -93,6 +97,12 @@ export default function App() {
             <EditProductPage/>
           </AdminRoute>
         } />
+
+        <Route path='/order/orders' element={
+          <ProtectedRoute>
+           <OrdersPage/>
+          </ProtectedRoute>
+          }/>
     </Routes>
     </>
   )
