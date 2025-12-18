@@ -31,7 +31,7 @@ export async function registerUser(req, res) {
       { id: user._id, role: user.role },
       process.env.JWT_SECRET_KEY,
       {
-        expiresIn: '3d',
+        expiresIn: '1d',
       }
     )
     // respond success
@@ -72,7 +72,7 @@ export async function loginUser(req, res) {
     const token = jwt.sign(
       { id: foundUser._id, role: foundUser.role },
       process.env.JWT_SECRET_KEY,
-      { expiresIn: '3d' }
+      { expiresIn: '1d' }
     )
     //respond with token and user data
 

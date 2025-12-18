@@ -56,7 +56,8 @@ export async function placeOrder(req, res) {
 
 export async function getOrders(req, res) {
   try {
-    const orders = await Order.find()
+    const user = req.user.id
+    const orders = await Order.find({ userId: user })
     return res.status(200).json({ orders })
   } catch (error) {
     return res.status(500).json({ error: 'Server Error' })

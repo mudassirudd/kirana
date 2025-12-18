@@ -68,42 +68,33 @@ export default function OrdersPage() {
   return(
     <>
         <h1>Your Orders</h1>
-      {orders.map((order,index)=>(
-        <>       
-          <table key={order._id}>
-            <thead>
-              <tr>
-                <th>Order #{index}</th>
-              </tr>
-            </thead>
-
-            <tbody>
-            
-            <tr>
-              <th>NO.</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Quantity</th>
+      {orders.map((order, orderIndex) => (
+    <div key={order._id} style={{ marginBottom: '2rem' }}>
+      <h3>Order #{orderIndex + 1}</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>NO.</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {order.items.map((item, itemIndex) => (
+            <tr key={item._id || itemIndex}> 
+              <td>{itemIndex + 1}</td>
+              <td>{item.name}</td>
+              <td>{item.price}</td>
+              <td>{item.quantity}</td>
             </tr>
-              {order.items.map((item,index)=>(
-                <>
-                <tr>
-                  <td>{index}</td>
-                <td>{item.name}</td>
-                <td>{item.price}</td>
-                <td>{item.quantity}</td>
-                </tr>
-                </>
-              ))}
-          
-            
-            </tbody>
-            
-          </table>
-          <div>Total:{order.total}</div>
-         </>
-      ))} 
-    
+          ))}
+        </tbody>
+      </table>
+      <strong>Total: ${order.total}</strong>
+      <hr />
+    </div>
+))}
     </>
   )
 }
