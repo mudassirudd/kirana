@@ -63,3 +63,11 @@ export async function getOrders(req, res) {
     return res.status(500).json({ error: 'Server Error' })
   }
 }
+export async function getAllOrders(req, res) {
+  try {
+    const orders = await Order.find()
+    return res.status(200).json({ orders })
+  } catch (error) {
+    return res.status(500).json({ error: 'Server Error' })
+  }
+}

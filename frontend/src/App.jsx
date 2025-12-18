@@ -13,6 +13,7 @@ import AdminProductsPage from './pages/AdminProductsPage'
 import EditProductPage from './pages/EditProductPage'
 import CartPage from './pages/CartPage'
 import OrdersPage from './pages/OrdersPage'
+import AllOrdersPage from './pages/AllOrdersPage'
 import { useCart } from './hooks/useCart'
 
 
@@ -44,7 +45,10 @@ export default function App() {
       <Link to='/cart' style={{position:"relative"}}>
         🛒 {totalItems > 0 && <span className='badge'>{totalItems}</span>}
       </Link>
-      <Link to="/order/orders">Orders</Link>
+      {user?.role === 'admin'
+      ?<Link to='/order/all-orders'>All Orders</Link>
+      :<Link to="/order/orders">Orders</Link>
+    }
       <Link onClick={logout}>Logout</Link>
 
       {user?.role==='admin' && 
@@ -101,6 +105,13 @@ export default function App() {
         <Route path='/order/orders' element={
           <ProtectedRoute>
            <OrdersPage/>
+          </ProtectedRoute>
+          }/>
+        <Route path='/order/all-orders' element={
+          <ProtectedRoute>
+            <AdminRoute>
+              <AllOrdersPage/>
+            </AdminRoute>
           </ProtectedRoute>
           }/>
     </Routes>
