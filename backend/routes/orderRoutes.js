@@ -5,6 +5,7 @@ import {
   placeOrder,
   getOrders,
   getAllOrders,
+  getOrderById,
 } from '../controllers/orderController.js'
 
 const orderRouter = express.Router()
@@ -12,5 +13,6 @@ const orderRouter = express.Router()
 orderRouter.post('/', auth, placeOrder)
 orderRouter.get('/orders', auth, getOrders)
 orderRouter.get('/all-orders', auth, adminOnly, getAllOrders)
+orderRouter.get('/:id', auth, adminOnly, getOrderById)
 
 export default orderRouter

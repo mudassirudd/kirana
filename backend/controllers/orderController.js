@@ -71,3 +71,17 @@ export async function getAllOrders(req, res) {
     return res.status(500).json({ error: 'Server Error' })
   }
 }
+export async function getOrderById(req, res) {
+  try {
+    const order = await Order.findById(req.params.id).populate(
+      'userId',
+      'email'
+    )
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found' })
+    }
+    return res.status(200).json({ order })
+  } catch (error) {
+    return res.status(400).json({ error: 'Invalid order id' })
+  }
+}

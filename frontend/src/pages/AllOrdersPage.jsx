@@ -1,5 +1,6 @@
 import { useEffect,useState } from "react"
 import {useAuth} from '../hooks/useAuth'
+import { Link } from "react-router-dom"
 
 export default function OrdersPage() {
   const {token} = useAuth() 
@@ -69,7 +70,10 @@ export default function OrdersPage() {
     <>
         <h1>All Orders</h1>
       {orders.map((order, orderIndex) => (
-    <div key={order._id} style={{ marginBottom: '2rem' }}>
+      <Link to={`/order/${order._id}`} key={order._id}>
+        <div key={order._id} style={{ 
+          backgroundColor:"black",borderRadius:"20px",padding:"0.5rem",
+          minHeight:"300px",width:"400px",marginBottom:"1rem" }}>
       <h3>Order #{orderIndex + 1}</h3>
       <h3>BY: {order.userId.email}</h3>
       <table>
@@ -93,8 +97,8 @@ export default function OrdersPage() {
         </tbody>
       </table>
       <strong>Total: ${order.total}</strong>
-      <hr />
     </div>
+    </Link>
 ))}
     </>
   )

@@ -14,6 +14,7 @@ import EditProductPage from './pages/EditProductPage'
 import CartPage from './pages/CartPage'
 import OrdersPage from './pages/OrdersPage'
 import AllOrdersPage from './pages/AllOrdersPage'
+import OrderPage from './pages/OrderPage'
 import { useCart } from './hooks/useCart'
 
 
@@ -114,6 +115,13 @@ export default function App() {
             </AdminRoute>
           </ProtectedRoute>
           }/>
+          <Route path='/order/:id' element={
+            <ProtectedRoute>
+              <AdminRoute>
+                <OrderPage/>
+              </AdminRoute>
+            </ProtectedRoute>
+        }/>
     </Routes>
     </>
   )
