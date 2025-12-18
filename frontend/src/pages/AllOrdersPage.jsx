@@ -71,7 +71,7 @@ export default function OrdersPage() {
       {orders.map((order, orderIndex) => (
     <div key={order._id} style={{ marginBottom: '2rem' }}>
       <h3>Order #{orderIndex + 1}</h3>
-      <h3>BY: {order.userId}</h3>
+      <h3>BY: {order.userId.email}</h3>
       <table>
         <thead>
           <tr>
