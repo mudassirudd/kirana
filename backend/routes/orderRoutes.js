@@ -6,6 +6,7 @@ import {
   getOrders,
   getAllOrders,
   getOrderById,
+  updateOrderStatusById,
 } from '../controllers/orderController.js'
 
 const orderRouter = express.Router()
@@ -14,5 +15,6 @@ orderRouter.post('/', auth, placeOrder)
 orderRouter.get('/orders', auth, getOrders)
 orderRouter.get('/all-orders', auth, adminOnly, getAllOrders)
 orderRouter.get('/:id', auth, adminOnly, getOrderById)
+orderRouter.patch('/:id', auth, adminOnly, updateOrderStatusById)
 
 export default orderRouter

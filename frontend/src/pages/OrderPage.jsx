@@ -33,6 +33,26 @@ export default function OrdersPage() {
     fetchOrder()
   },[id,token])
 
+
+  async function handleStatus (e) {
+    const status = e.target.value 
+    const res = await fetch(`http://localhost:5000/order/${id}`,{
+      method:"PATCH",
+      body:JSON.stringify({status}),
+      headers:{
+        Authorization:`Bearer ${token}`,
+        "Content-Type":"application/json"
+      }
+    })
+
+    const data = await res.json()
+    if (!res.ok) {
+      return setError(data.error)
+    }
+    setOrder({...order,status:data.status})
+
+  }
+
 // {
 //   "order": {
 //     "_id": "69428d12e43d7382e36b1b24",
@@ -67,7 +87,7 @@ export default function OrdersPage() {
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
-          </tr>
+           </tr>
         </thead>
         <tbody>
           {order?.items?.map((item, itemIndex) => (
@@ -76,11 +96,25 @@ export default function OrdersPage() {
               <td>{item.name}</td>
               <td>{item.price}</td>
               <td>{item.quantity}</td>
+             
             </tr>
           ))}
         </tbody>
       </table>
-      <strong>Total: ${order.total}</strong>  
+       <div>
+          <span>Status:</span>
+          <p>{order.status}</p>
+          <select 
+            onChange={handleStatus}
+            value={order.status}
+          >
+            <option value="processing">Processing</option>
+            <option value='delivered'>Delivered</option>
+            <option value='cancelled'>Cancelled</option>
+          </select>
+        <hr/>
+        </div>
+      <strong>Total: ${order?.total}</strong>  
 </>
   )
   

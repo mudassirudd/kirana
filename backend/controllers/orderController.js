@@ -85,3 +85,22 @@ export async function getOrderById(req, res) {
     return res.status(400).json({ error: 'Invalid order id' })
   }
 }
+
+export async function updateOrderStatusById(req, res) {
+  try {
+    const id = req.params.id
+    const { status } = req.body
+
+    const newStatus = await Order.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    )
+    if (!newStatus) {
+      return res.status(404).json({ error: 'order not found' })
+    }
+    return res.status(201).json({ status: newStatus.status })
+  } catch (error) {
+    return res.status(500).json({ error: 'Server error' })
+  }
+}

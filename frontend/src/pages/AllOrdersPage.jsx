@@ -83,6 +83,7 @@ export default function OrdersPage() {
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -92,6 +93,7 @@ export default function OrdersPage() {
               <td>{item.name}</td>
               <td>{item.price}</td>
               <td>{item.quantity}</td>
+              <td>{order.status}</td>
             </tr>
           ))}
         </tbody>
