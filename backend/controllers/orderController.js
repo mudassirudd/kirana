@@ -94,7 +94,7 @@ export async function updateOrderStatusById(req, res) {
     const newStatus = await Order.findByIdAndUpdate(
       id,
       { status },
-      { new: true }
+      { new: true, runValidators: true }
     )
     if (!newStatus) {
       return res.status(404).json({ error: 'order not found' })

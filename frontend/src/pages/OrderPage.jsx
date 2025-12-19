@@ -49,7 +49,7 @@ export default function OrdersPage() {
     if (!res.ok) {
       return setError(data.error)
     }
-    setOrder({...order,status:data.status})
+    setOrder(prev=>({...prev, status: data.status}))
 
   }
 
