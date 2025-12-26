@@ -17,7 +17,7 @@ export default function Home(){
 
       
       const productList = products.map(product=>(
-       <Link  to = {`/products/${product._id}`}
+       <Link className='w-fit mx-auto h-full ' to = {`/products/${product._id}`}
               key={product._id}> 
            <ProductCard  product={product}/>
        </Link>
@@ -26,9 +26,13 @@ export default function Home(){
       // console.log(products)
 
   return(
-    
     <>
-      {productList}
+    <h1 className='text-center p-15  text-6xl sm:text-8xl font-bold'>New Arrivals</h1>
+    <section className='bg-linear-to-br from-slate-200 to-gray-200'>
+      <section className='  mx-auto w-[70%]  p-6 text-center grid grid-cols-1   sm:grid-cols-2  gap-6 ' >
+        {productList}
+      </section >
+    </section>
     </>
   )
 }

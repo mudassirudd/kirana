@@ -28,8 +28,10 @@ export default function App() {
   },0)
   
   return (
-    <>
+    <main className='   w-full min-h-screen 
+    '>
     <nav className='navbar'>
+
       { !token &&
       <>
       <Link to='/auth/register'>Register</Link>
@@ -38,17 +40,18 @@ export default function App() {
       }
       {token &&
       <>
-      <Link to='/'>🏠</Link>
+      <Link to='/'>Home</Link>
 
-      <span>Welcome, {user?.email}</span>
 
-      <Link to='/cart' style={{position:"relative"}}>
-        🛒 {totalItems > 0 && <span className='badge'>{totalItems}</span>}
-      </Link>
+      
       {user?.role === 'admin'
       ?<Link to='/order/all-orders'>All Orders</Link>
       :<Link to="/order/orders">Orders</Link>
     }
+
+    <Link to='/cart' style={{position:"relative"}}>
+        🛒 {totalItems > 0 && <span className='badge'>{totalItems}</span>}
+      </Link>
       <Link onClick={logout}>Logout</Link>
 
       {user?.role==='admin' && 
@@ -122,6 +125,6 @@ export default function App() {
             </ProtectedRoute>
         }/>
     </Routes>
-    </>
+    </main>
   )
 }

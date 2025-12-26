@@ -41,12 +41,14 @@ export default function ProductPage(){
   if(error) return <h2>{error}</h2>
    
     return(
-      <div className="product-page">
-      <img src={product.image} alt={product.name} />
-      <h2>{product.name}</h2>
-      <p>{product.description}</p>
-      <strong>₹{product.price}</strong>
-      <button onClick={()=>addToCart(product)}>Add to Cart</button>
-    </div>
+     <div className =" mt-10">
+       <div className="w-80 mx-auto bg-gray-200  flex flex-col items-center justify-end text-center rounded-3xl pb-2">
+        <img className='rounded-t-3xl  w-full h-full  object-cover"' src={product.image} alt={product.name} />
+        <h2 className='text-3xl font-medium  m-2'>{product.name}</h2>
+        <p className='text-sm m-2 text-gray-600'>{product.description}</p>
+        <strong className='m-2'>₹{product.price}</strong>
+        <button className='btn' onClick={()=>addToCart(product)}>Add to Cart</button>
+      </div>
+     </div>
   )
 }

@@ -21,20 +21,20 @@ export default function LoginPage() {
   }
   return(
     
-   <div className="registration-form">
-    <h2>Login</h2>
-  <form action={handleLogin} > 
-  <label htmlFor="email">Email:
-  <input type="email" name="email" id='email' required/>
+   <div className="  mt-15 flex flex-col items-center justify-center">
+    <h2 className='text-center font-bold text-2xl sm:text-3xl'>Login</h2>
+  <form  className="registration-form" action={handleLogin} > 
+    <label htmlFor="email">Email
 
-  </label>
-  <label htmlFor="password">Password:
+    </label>
+    <input type="email" name="email" id='email' required/>
+    <label htmlFor="password">Password
 
-  <input type="password" name="password" id='password' required/>
-  </label>
-  <button type="submit">Login</button>
-  
- {error && <p style={{ color: "red" }}>{error}</p>}
+    </label>
+    <input type="password" name="password" id='password' required/>
+    <button className='btn' type="submit">Login</button>
+    
+  {error && <p style={{ color: "red" }}>{error}</p>}
 
 
   </form>

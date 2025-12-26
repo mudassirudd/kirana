@@ -21,18 +21,18 @@ export default function RegisterPage() {
   }
  return(
   
-   <div className="registration-form">
-    <h2>Register with us</h2>
-  <form action={handleRegister} > 
-  <label htmlFor="email">Email:
+   <div className=" mt-15 flex flex-col items-center justify-center">
+    <h2 className="text-center font-bold text-2xl sm:text-3xl">Register</h2>
+  <form className="registration-form" action={handleRegister} > 
+  <label htmlFor="email">Email
+
+  </label>
   <input type="email" name="email"  id="email" required/>
+  <label htmlFor="password">Password
 
   </label>
-  <label htmlFor="password">Password:
-
   <input type="password" name="password" id="passsword"  required/>
-  </label>
-  <button type="submit">Register</button>
+  <button className="btn" type="submit">Register</button>
   
  {error && <p style={{ color: "red" }}>{error}</p>}
 

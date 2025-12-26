@@ -1,1 +1,31 @@
 @import 'tailwindcss';
+
+@layer base {
+  body {
+    @apply font-sans;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 bg-linear-to-tl from-black to-slate-900  rounded text-gray-100 hover:cursor-pointer hover:scale-105 active:scale-95 hover:bg-slate-500
+    transition-all duration-200;
+  }
+
+  .navbar {
+    @apply sticky p-3 bg-gray-200 backdrop-blur-md text-black flex flex-col  justify-center items-center 
+           gap-3 h-fit text-sm md:text-base sm:flex-row;
+  }
+  .navbar a {
+    @apply hover:bg-slate-100 px-2 py-1 rounded-sm w-fit;
+  }
+  .registration-form {
+    @apply bg-gray-200 m-10 p-10 rounded-3xl flex flex-col justify-center items-center gap-2;
+  }
+  .registration-form input {
+    @apply bg-white rounded-xs px-3 py-2 mb-2  w-70;
+  }
+  .registration-form label {
+    @apply text-gray-600;
+  }
+}
