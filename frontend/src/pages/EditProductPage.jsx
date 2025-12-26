@@ -80,31 +80,30 @@ fetchProduct()
 if (loading) return <p>Loading...</p>
 
   return(
-    <>
-
-      <h1>Edit Product <small>{id}</small></h1>
-      <form  onSubmit={handleUpdate}>
-        <label>Name:
+ <div className='flex flex-col items-center justify-center gap-7'>
+      <h1 className='font-bold text-lg sm:text2xl'>Edit Product <small>{id}</small></h1>
+      <form className='registration-form' onSubmit={handleUpdate}>
+        <label>Name
+        </label>
           <input type="text"  value={name} onChange={(e)=>setName(e.target.value)} />
-        </label>
 
-        <label>Category:
+        <label>Category
+        </label>
           <input type="text"  value={category} onChange={(e)=>setCategory(e.target.value)} />
-        </label>
 
-        <label>Description:
+        <label>Description
+        </label>
           <input type="text"  value={description} onChange={(e)=>setDescription(e.target.value)} />
-        </label>
       
-        <label>Price:
+        <label>Price
+        </label>
           <input type="number"  value={price} onChange={(e)=>setPrice(e.target.value)} />
-        </label>
         
-        <label>Image:
-          <input type="url"  value={image} onChange={(e)=>setImage(e.target.value)} />
+        <label>Image
         </label>
-      <button type='submit'>Update</button>
+          <input type="url"  value={image} onChange={(e)=>setImage(e.target.value)} />
+      <button className='btn' type='submit'>Update</button>
       </form>
-    </>
+    </div>
   )
 }

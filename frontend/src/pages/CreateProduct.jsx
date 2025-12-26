@@ -36,35 +36,35 @@ export default function CreateProduct() {
     
   }
   return(
-    <>
-    <h1>Make a Product</h1>
-    <form action={handleCreate}>
-    <label htmlFor="">Name: 
+ <div className='flex flex-col items-center justify-center gap-7'>   
+  <h1 className="font-bold text-2xl sm:text-3xl">Make a Product</h1>
+    <form className="registration-form " action={handleCreate}>
+    <label htmlFor="">Name
+    </label>
       <input type="text" name="name"/>
-    </label>
 
-    <label htmlFor="">Category: 
+    <label htmlFor="">Category
+    </label>
       <input type="text" name="category"/>
-    </label>
 
-    <label htmlFor="">Description: 
+    <label htmlFor="">Description
+    </label>
       <input type="text" name="description"/>
-    </label>
 
-    <label htmlFor="">Price: 
+    <label htmlFor="">Price
+    </label>
       <input min="0"  type="number" name="price"/>
+
+
+    <label htmlFor="">Image
     </label>
-
-
-    <label htmlFor="">Image: 
       <input type="url" name="image"/>
-    </label>
 
-    <button type="submit">Create</button>
+    <button className="btn" type="submit">Create</button>
 {error && <p style={{color: "red"}}>{error}</p>}
 {success && <p style={{color: "green"}}>{success}</p>}
 </form>
 
-    </>
+    </div>
   )
 }

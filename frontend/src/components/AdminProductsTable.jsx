@@ -14,15 +14,15 @@ export default function AdminProductsTable({products,handleDelete}) {
           <tbody>
 
         {  products.map(prod=>(
-          <tr key={prod._id}>
-            <td>{prod.name}</td>
-            <td>{prod.price}</td>
+          <tr  key={prod._id}>
+            <td className="p-2.5" >{prod.name}</td>
+            <td className="p-2.5" >{prod.price}</td>
             <td>
-              <Link to={`/admin/products/${prod._id}/edit`}>
-              <button>Edit</button>
+              <Link  to={`/admin/products/${prod._id}/edit`}>
+              <button className="btn w-fit  px-1 py-0 mr-0.5 cursor-pointer">Edit</button>
               </Link>
 
-              <button onClick={()=>handleDelete(prod._id)}>Delete</button>
+              <button className="btn w-fit px-1 py-0" onClick={()=>handleDelete(prod._id)}>Delete</button>
               </td>
 
           </tr>
