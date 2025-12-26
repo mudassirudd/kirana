@@ -66,10 +66,9 @@ export default function OrdersPage() {
   //     "__v": 0
   //   }]
   return(
-    <>
-        <h1>Your Orders</h1>
+<div className='flex flex-col items-center text-center  gap-7'>        <h1 className="text-center font-bold text-2xl sm:text-3xl">Your Orders</h1>
       {orders.map((order, orderIndex) => (
-    <div key={order._id} style={{ marginBottom: '2rem' }}>
+    <div className="flex flex-col items-center" key={order._id} style={{ marginBottom: '2rem' }}>
       <h3>Order #{orderIndex + 1}</h3>
       <table>
         <thead>
@@ -95,6 +94,6 @@ export default function OrdersPage() {
       <hr />
     </div>
 ))}
-    </>
+    </div>
   )
 }

@@ -67,13 +67,10 @@ export default function OrdersPage() {
   //     "__v": 0
   //   }]
   return(
-    <>
-        <h1>All Orders</h1>
+<div className='flex flex-col items-center justify-center gap-7'>        <h1 className="text-center font-bold text-2xl sm:text-3xl">All Orders</h1>
       {orders.map((order, orderIndex) => (
       <Link to={`/order/${order._id}`} key={order._id}>
-        <div key={order._id} style={{ 
-          backgroundColor:"black",borderRadius:"20px",padding:"0.5rem",
-          minHeight:"300px",width:"400px",marginBottom:"1rem" }}>
+        <div key={order._id} className="bg-gray-200 rounded-3xl p-2 min-h-55 w-[320px] mb-4 flex flex-col items-center gap-2">
       <h3>Order #{orderIndex + 1}</h3>
       <h3>BY: {order.userId.email}</h3>
       <table>
@@ -102,6 +99,6 @@ export default function OrdersPage() {
     </div>
     </Link>
 ))}
-    </>
+    </div>
   )
 }

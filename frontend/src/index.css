@@ -28,4 +28,15 @@
   .registration-form label {
     @apply text-gray-600;
   }
+
+  table {
+    @apply w-[80%] max-w-[500px] border-collapse bg-gray-200  border border-black;
+  }
+  table td,
+  th {
+    @apply border border-black   text-center;
+  }
+  .counter {
+    @apply rounded-3xl;
+  }
 }

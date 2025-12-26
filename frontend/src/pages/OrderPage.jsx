@@ -78,8 +78,7 @@ export default function OrdersPage() {
 
 
   return(
-<>
-    <h3>BY: {order?.userId?.email}</h3>
+<div className='flex flex-col items-center justify-center gap-7 text-center'>    <h3>BY: {order?.userId?.email}</h3>
       <table>
         <thead>
           <tr>
@@ -103,8 +102,8 @@ export default function OrdersPage() {
       </table>
        <div>
           <span>Status:</span>
-          <p>{order.status}</p>
-          <select 
+          <p className="font-bold ">{order.status}</p>
+          <select className="bg-gray-200 p-1 rounded-t-sm"
             onChange={handleStatus}
             value={order.status}
           >
@@ -115,7 +114,7 @@ export default function OrdersPage() {
         <hr/>
         </div>
       <strong>Total: ${order?.total}</strong>  
-</>
+</div>
   )
   
 }

@@ -61,8 +61,8 @@ export default function CartPage() {
 
 if (cart.length === 0)return <p>Your cart is empty.</p> 
   return(
-    <>
-      <h1>CartPage</h1>
+    <div className='flex flex-col items-center justify-center gap-7'>
+      <h1 className='text-center font-bold text-2xl sm:text-3xl' text>CartPage</h1>
       <table>
         <thead>
       <tr>
@@ -76,19 +76,19 @@ if (cart.length === 0)return <p>Your cart is empty.</p>
         <tbody>
           {cart.map(item=>(
             <tr key={item._id}>
-              <td><img src={item.image} alt={item.name} width={50} /></td>
+              <td><img className='w-15 align ' src={item.image} alt={item.name}  /></td>
               <td>{item.price}</td>
               <td>{item.name}</td>
               <td>{item.quantity}</td>
               <td >
                 <div className='counter'>
 
-                <button onClick={()=>updateQty(item._id,item.quantity - 1)}>
+                <button className=' mx-1.5  text-xl cursor-pointer ' onClick={()=>updateQty(item._id,item.quantity - 1)}>
                   -
                   </button>
-                  <span>{item.quantity}</span>
-                <button onClick={()=>updateQty(item._id,item.quantity + 1)}>+</button>
-                <button onClick={()=>removeFromCart(item._id)}> 🗑️</button>
+                  <span className='border border-black bg-white p-[1px]'>{item.quantity}</span>
+                <button className='mx-1.5  text-xl cursor-pointer ' onClick={()=>updateQty(item._id,item.quantity + 1)}>+</button>
+                <button className='cursor-pointer' onClick={()=>removeFromCart(item._id)}> 🗑️</button>
 
                 </div>
               </td>
@@ -98,16 +98,16 @@ if (cart.length === 0)return <p>Your cart is empty.</p>
           )}
         </tbody>
       </table>
-        <button onClick={clearCart}>Clear cart</button>
+        <button className='btn' onClick={clearCart}>Clear cart</button>
 
           <p>Your Total: <strong>₹{total}</strong></p>
           <p>Total items: <strong>{totalItems}</strong></p>
-          <button onClick={order}>Order</button>
+          <button className='btn' onClick={order}>Order</button>
             {loading && <p>Loading...</p>}
 
               {error && <p style={{color:"red"}}>{error}</p>}
 
 
-    </>
+    </div>
   )
 }
