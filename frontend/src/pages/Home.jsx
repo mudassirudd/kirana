@@ -7,7 +7,7 @@ export default function Home(){
 
       React.useEffect(()=>{
         async function fetchProducts() {
-          const res = await fetch('http://localhost:5000/products')
+          const res = await fetch('/products')
           const data = await res.json()
           setProducts( data.products )
         }

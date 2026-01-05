@@ -32,7 +32,7 @@ export default function CartPage() {
       quantity:item.quantity
     }
   })
-     const res = await fetch("http://localhost:5000/order",{
+     const res = await fetch("/order",{
       method:"POST",
       body:JSON.stringify({items}),
       headers:{

@@ -8,7 +8,7 @@ export default function OrdersPage() {
 
   useEffect(()=>{
     async function fetchOrders() {
-      const res = await fetch("http://localhost:5000/order/orders",{
+      const res = await fetch("/order/orders",{
         method:"GET",
         headers:{
           "Content-Type":"application/json",

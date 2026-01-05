@@ -9,7 +9,7 @@ export default function OrdersPage() {
 
   useEffect(()=>{
     async function fetchOrders() {
-      const res = await fetch("http://localhost:5000/order/all-orders",{
+      const res = await fetch("/order/all-orders",{
         method:"GET",
         headers:{
           "Content-Type":"application/json",
