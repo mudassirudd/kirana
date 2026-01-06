@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react"
 import {useAuth} from '../hooks/useAuth'
 import { Link } from "react-router-dom"
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default function OrdersPage() {
   const {token} = useAuth() 
@@ -9,7 +10,7 @@ export default function OrdersPage() {
 
   useEffect(()=>{
     async function fetchOrders() {
-      const res = await fetch("/api/order/all-orders",{
+      const res = await fetch(`${API_URL}/order/all-orders`,{
         method:"GET",
         headers:{
           "Content-Type":"application/json",

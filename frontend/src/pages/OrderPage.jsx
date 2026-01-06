@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import {useAuth} from '../hooks/useAuth.js'
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export default function OrdersPage() {
   const {token } = useAuth()
@@ -14,7 +16,7 @@ export default function OrdersPage() {
     async function fetchOrder() {
       try {
         setLoading(true)
-        const res = await fetch(`/api/order/${id}`,{
+        const res = await fetch(`${API_URL}/order/${id}`,{
           method:"GET",
           headers:{
             Authorization:`Bearer ${token}`
@@ -36,7 +38,7 @@ export default function OrdersPage() {
 
   async function handleStatus (e) {
     const status = e.target.value 
-    const res = await fetch(`/api/order/${id}`,{
+    const res = await fetch(`${API_URL}/order/${id}`,{
       method:"PATCH",
       body:JSON.stringify({status}),
       headers:{

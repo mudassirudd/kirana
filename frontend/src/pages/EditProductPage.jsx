@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import {useNavigate, useParams} from 'react-router-dom'
 import {useAuth} from '../hooks/useAuth'
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export default function EditProductPage () {
 
@@ -18,7 +20,7 @@ export default function EditProductPage () {
  useEffect(()=>{
   async function fetchProduct() {
 try {
-  const res = await fetch(`/api/products/${id}`)
+  const res = await fetch(`${API_URL}/products/${id}`)
 
   const data = await res.json()
 
@@ -54,7 +56,7 @@ fetchProduct()
     image,
   }
 
-    const res = await fetch(`/api/products/${id}`,{
+    const res = await fetch(`${API_URL}/products/${id}`,{
       method:"PUT",
       body:JSON.stringify(updatedObject),
       headers:{

@@ -2,6 +2,7 @@ import {useCart} from '../hooks/useCart'
 import {useAuth} from '../hooks/useAuth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 
@@ -32,7 +33,7 @@ export default function CartPage() {
       quantity:item.quantity
     }
   })
-     const res = await fetch("/api/order",{
+     const res = await fetch(`${API_URL}/order`,{
       method:"POST",
       body:JSON.stringify({items}),
       headers:{

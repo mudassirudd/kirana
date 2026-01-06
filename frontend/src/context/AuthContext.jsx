@@ -1,6 +1,7 @@
 import {createContext,useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import { useCart } from '../hooks/useCart';
+const API_URL = import.meta.env.VITE_API_BASE_URL; 
 
 export const AuthContext = createContext()
 
@@ -23,7 +24,7 @@ export function AuthProviderComponent ({children}){
   // LOGIN
   async function login(email,password) {
 
-    const res = await fetch ("/api/auth/login",{
+    const res = await fetch (`${API_URL}/auth/login`,{
       method:"POST",
       body:JSON.stringify({email,password}),
       headers:{
@@ -45,7 +46,7 @@ export function AuthProviderComponent ({children}){
 
   // REGISTER
   async function register (email,password) {
-    const res = await fetch("/api/auth/register",{
+    const res = await fetch(`${API_URL}/auth/register`,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({email,password}),

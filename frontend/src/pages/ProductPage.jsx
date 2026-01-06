@@ -1,6 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useCart } from '../hooks/useCart'
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export default function ProductPage(){
   const {addToCart} = useCart()
@@ -16,7 +18,7 @@ export default function ProductPage(){
     async function fetchProduct(){
        try {
        setLoading(true)
-      const res = await fetch(`/api/products/${id}`)
+      const res = await fetch(`${API_URL}/products/${id}`)
       if (!res.ok) {
         throw new Error("product not found");
         

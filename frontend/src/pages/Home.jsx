@@ -1,13 +1,15 @@
 import React from 'react'
 import ProductCard from '../components/ProductCard'
 import {Link} from 'react-router-dom'
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export default function Home(){
     const [products,setProducts] = React.useState([])
 
       React.useEffect(()=>{
         async function fetchProducts() {
-          const res = await fetch('/products')
+          const res = await fetch(`${API_URL}/products`)
           const data = await res.json()
           setProducts( data.products )
         }
