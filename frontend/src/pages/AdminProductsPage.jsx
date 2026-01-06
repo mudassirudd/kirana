@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import ProductCard from "../components/ProductCard"
 import AdminProductsTable from "../components/AdminProductsTable"
 import {useAuth} from '../hooks/useAuth'
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 export default function AdminProductsPage() {
 
   const [products,setProducts]=useState([])
@@ -15,7 +16,7 @@ export default function AdminProductsPage() {
   useEffect(()=>{
     async function fetchProducts(){
       try {
-        const res = await fetch("/api/products",{
+        const res = await fetch(`${API_URL}/products`,{
         method:"GET",
         headers:{
           "Content-Type":"application/json"
@@ -37,7 +38,7 @@ export default function AdminProductsPage() {
     const ok = window.confirm("Delete this product? This cannot be undone.")
     if (!ok) return
    
-      const res = await fetch(`/api/products/${id}`,{
+      const res = await fetch(`${API_URL}/products/${id}`,{
         method:"DELETE",
         headers:{
           "Content-Type":"application/json",

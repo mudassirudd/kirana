@@ -1,5 +1,7 @@
 import { useState } from "react"
 import {useAuth} from "../hooks/useAuth"
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export default function CreateProduct() {
   const [error,setError]=useState(null)
@@ -15,7 +17,7 @@ export default function CreateProduct() {
     const  price= formData.get("price")
     const  image= formData.get("image")
     
-    const res = await fetch("/api/products",{
+    const res = await fetch(`${API_URL}/products`,{
       method:"POST",
       body:JSON.stringify({name,category,description,price,image}),
       headers:{
