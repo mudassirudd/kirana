@@ -57,8 +57,8 @@ export default function AdminProductsPage() {
  
   
   return(
-    <>
-      <h1>Admin Product List</h1>
+    <div className='flex flex-col items-center justify-center gap-7'>     
+     <h1 className="font-bold text-2xl sm:text-3xl">Admin Product List</h1>
   {loading && <p>Loading...</p>}
 
 
@@ -71,6 +71,6 @@ export default function AdminProductsPage() {
       />
     }
     {error && <p style={{color:"red"}}>{error}</p>}
-    </>
+    </div>
   )
 } 
