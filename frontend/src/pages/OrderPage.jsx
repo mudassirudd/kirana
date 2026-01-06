@@ -14,7 +14,7 @@ export default function OrdersPage() {
     async function fetchOrder() {
       try {
         setLoading(true)
-        const res = await fetch(`/order/${id}`,{
+        const res = await fetch(`/api/order/${id}`,{
           method:"GET",
           headers:{
             Authorization:`Bearer ${token}`
@@ -36,7 +36,7 @@ export default function OrdersPage() {
 
   async function handleStatus (e) {
     const status = e.target.value 
-    const res = await fetch(`/order/${id}`,{
+    const res = await fetch(`/api/order/${id}`,{
       method:"PATCH",
       body:JSON.stringify({status}),
       headers:{

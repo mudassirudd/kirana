@@ -15,7 +15,7 @@ export default function AdminProductsPage() {
   useEffect(()=>{
     async function fetchProducts(){
       try {
-        const res = await fetch("/products",{
+        const res = await fetch("/api/products",{
         method:"GET",
         headers:{
           "Content-Type":"application/json"
@@ -37,7 +37,7 @@ export default function AdminProductsPage() {
     const ok = window.confirm("Delete this product? This cannot be undone.")
     if (!ok) return
    
-      const res = await fetch(`/products/${id}`,{
+      const res = await fetch(`/api/products/${id}`,{
         method:"DELETE",
         headers:{
           "Content-Type":"application/json",
