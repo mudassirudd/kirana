@@ -32,7 +32,7 @@ export default function CartPage() {
       quantity:item.quantity
     }
   })
-     const res = await fetch("/order",{
+     const res = await fetch("/api/order",{
       method:"POST",
       body:JSON.stringify({items}),
       headers:{
