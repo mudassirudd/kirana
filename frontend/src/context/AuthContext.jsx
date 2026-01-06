@@ -23,7 +23,7 @@ export function AuthProviderComponent ({children}){
   // LOGIN
   async function login(email,password) {
 
-    const res = await fetch ("/api/auth/login",{
+    const res = await fetch ("/auth/login",{
       method:"POST",
       body:JSON.stringify({email,password}),
       headers:{
@@ -45,7 +45,7 @@ export function AuthProviderComponent ({children}){
 
   // REGISTER
   async function register (email,password) {
-    const res = await fetch("/api/auth/register",{
+    const res = await fetch("/auth/register",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({email,password}),

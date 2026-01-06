@@ -13,9 +13,9 @@ app.use(cors())
 app.use(express.json())
 
 connectDB()
-app.use('/api/products', productRouter)
-app.use('/api/auth', authRouter)
-app.use('/api/order', orderRouter)
+app.use('api/products', productRouter)
+app.use('api/auth', authRouter)
+app.use('api/order', orderRouter)
 
 app.get('/', (req, res) => {
   res.send({ message: 'API working' })

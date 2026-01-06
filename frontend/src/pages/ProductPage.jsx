@@ -16,7 +16,7 @@ export default function ProductPage(){
     async function fetchProduct(){
        try {
        setLoading(true)
-      const res = await fetch(`/api/products/${id}`)
+      const res = await fetch(`/products/${id}`)
       if (!res.ok) {
         throw new Error("product not found");
         

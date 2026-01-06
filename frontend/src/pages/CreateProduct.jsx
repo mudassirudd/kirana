@@ -15,7 +15,7 @@ export default function CreateProduct() {
     const  price= formData.get("price")
     const  image= formData.get("image")
     
-    const res = await fetch("/api/products",{
+    const res = await fetch("/products",{
       method:"POST",
       body:JSON.stringify({name,category,description,price,image}),
       headers:{

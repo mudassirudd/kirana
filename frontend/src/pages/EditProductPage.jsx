@@ -18,7 +18,7 @@ export default function EditProductPage () {
  useEffect(()=>{
   async function fetchProduct() {
 try {
-  const res = await fetch(`/api/products/${id}`)
+  const res = await fetch(`/products/${id}`)
 
   const data = await res.json()
 
@@ -54,7 +54,7 @@ fetchProduct()
     image,
   }
 
-    const res = await fetch(`/api/products/${id}`,{
+    const res = await fetch(`/products/${id}`,{
       method:"PUT",
       body:JSON.stringify(updatedObject),
       headers:{
