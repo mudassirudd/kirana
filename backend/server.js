@@ -2,9 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import { connectDB } from './config/db.js'
-import productRouter from './routes/productRoutes.js'
-import authRouter from './routes/authRoutes.js'
-import orderRouter from './routes/orderRoutes.js'
+import v1Router from './routes/v1Routes.js'
 
 dotenv.config()
 
@@ -13,14 +11,12 @@ app.use(cors())
 app.use(express.json())
 
 connectDB()
-app.use('/products', productRouter)
-app.use('/auth', authRouter)
-app.use('/order', orderRouter)
+app.use('/api/v1', v1Router)
 
 app.get('/', (req, res) => {
   res.send({ message: 'API working' })
 })
 
-app.listen(process.env.PORT, (req, res) => {
+app.listen(process.env.PORT || 5000, (req, res) => {
   console.log(`Server running on port:${process.env.PORT}`)
 })
