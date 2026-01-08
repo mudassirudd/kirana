@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "🚀 Starting Deployment..."
+set -e 
 
 # 1. Pull latest code
 git pull origin main
