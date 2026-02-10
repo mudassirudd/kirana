@@ -1,27 +1,24 @@
 {
   "compilerOptions": {
+    //language and environment
     "lib": ["ES2022"],
     "target": "es2022",
     "module": "esnext",
-    "moduleResolution": "bundler","moduleDetection": "force",
-    //
-    "jsx": "react-jsx",
-    //
+    "moduleResolution": "nodenext",
+    "moduleDetection": "force",
+    //strictness
     "strict": true,
     "noUncheckedIndexedAccess": true,
-    "noImplicitAny": true,
     "allowJs": true,
     "checkJs": false,
-
-    //
+    //compatibility
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
-    //
+    //performance
     "skipLibCheck": true,
 
-    //
-    "outDir": "./dist"
   },
+
   "exclude": [
     "node_modules"
   ]
