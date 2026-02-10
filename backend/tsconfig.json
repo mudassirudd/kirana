@@ -3,7 +3,7 @@
     //language and environment
     "lib": ["ES2022"],
     "target": "es2022",
-    "module": "esnext",
+    "module": "nodenext",
     "moduleResolution": "nodenext",
     "moduleDetection": "force",
     //strictness
@@ -16,10 +16,12 @@
     "verbatimModuleSyntax": true,
     //performance
     "skipLibCheck": true,
+    // build
+    "outDir": "./dist"
 
   },
 
   "exclude": [
-    "node_modules"
+    "node_modules", "dist"
   ]
 }
