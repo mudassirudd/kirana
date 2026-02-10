@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "target": "es2022",
+    "module": "esnext",
+    "moduleResolution": "bundler","moduleDetection": "force",
+    //
+    "jsx": "react-jsx",
+    //
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "checkJs": false,
+
+    //
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    //
+    "skipLibCheck": true,
+
+    //
+    "outDir": "./dist"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
