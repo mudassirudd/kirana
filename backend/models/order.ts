@@ -1,6 +1,20 @@
 import mongoose from 'mongoose'
+export interface IorderItem {
+  productId: mongoose.Types.ObjectId
+  name: string
+  price: number
+  quantity: number
+}
 
-const orderSchema = new mongoose.Schema(
+export interface IOrder {
+  userId: mongoose.Types.ObjectId
+  items: IorderItem[]
+  total: number
+  status: 'processing' | 'delivered' | 'cancelled'
+}
+export interface IOrderDocument extends IOrder, mongoose.Document {}
+
+const orderSchema = new mongoose.Schema<IOrderDocument>(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -30,7 +44,7 @@ const orderSchema = new mongoose.Schema(
       lowercase: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
-export const Order = mongoose.model('Order', orderSchema)
+export const Order = mongoose.model<IOrderDocument>('Order', orderSchema)
