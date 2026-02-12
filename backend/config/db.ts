@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
-const mongoUri: string | undefined = process.env.MONGO_URI
 
 export async function connectDB() {
+  const mongoUri: string | undefined = process.env.MONGO_URI
   if (typeof mongoUri === 'undefined') {
     console.error('DB connection error')
     process.exit(1)
