@@ -2,10 +2,11 @@ import { User } from '../models/user.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import type { Request, Response } from 'express'
 
 dotenv.config()
 
-export async function registerUser(req, res) {
+export async function registerUser(req: Request, res: Response) {
   try {
     //extract email pass
     const { email, password } = req.body
@@ -29,10 +30,10 @@ export async function registerUser(req, res) {
     // jwt generation
     const token = jwt.sign(
       { id: user._id, role: user.role },
-      process.env.JWT_SECRET_KEY,
+      process.env.JWT_SECRET_KEY!,
       {
         expiresIn: '1d',
-      }
+      },
     )
     // respond success
     res.status(201).json({
@@ -50,7 +51,7 @@ export async function registerUser(req, res) {
   }
 }
 
-export async function loginUser(req, res) {
+export async function loginUser(req: Request, res: Response) {
   try {
     const { email, password } = req.body
 
@@ -71,8 +72,8 @@ export async function loginUser(req, res) {
     // generate jwt
     const token = jwt.sign(
       { id: foundUser._id, role: foundUser.role },
-      process.env.JWT_SECRET_KEY,
-      { expiresIn: '1d' }
+      process.env.JWT_SECRET_KEY!,
+      { expiresIn: '1d' },
     )
     //respond with token and user data
 

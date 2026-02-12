@@ -1,11 +1,11 @@
-import type { NextFunction, Request, Response } from 'express'
-import type { Iuser } from '../models/user.js'
+import type { NextFunction, Response } from 'express'
+import type { AuthenticatedRequest } from './auth.js'
 
-export interface AuthRequest extends Request {
-  user: Iuser
-}
-
-export function adminOnly(req: AuthRequest, res: Response, next: NextFunction) {
+export function adminOnly(
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+) {
   const isAdmin = req.user.role === 'admin'
 
   if (!isAdmin) {

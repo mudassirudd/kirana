@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import type { Request, Response, NextFunction } from 'express'
-import type { Iuser } from '../models/user.js'
 dotenv.config()
 
 export interface TokenPayload {

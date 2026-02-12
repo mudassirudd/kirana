@@ -1,6 +1,7 @@
 import { Product } from '../models/product.js'
+import type { Request, Response } from 'express'
 
-export async function getProducts(req, res) {
+export async function getProducts(req: Request, res: Response) {
   try {
     const products = await Product.find()
     return res.status(200).json({ products })
@@ -9,7 +10,7 @@ export async function getProducts(req, res) {
   }
 }
 
-export async function getProductById(req, res) {
+export async function getProductById(req: Request, res: Response) {
   try {
     const product = await Product.findById(req.params.id)
     if (!product) {
@@ -21,7 +22,7 @@ export async function getProductById(req, res) {
   }
 }
 
-export async function createProduct(req, res) {
+export async function createProduct(req: Request, res: Response) {
   try {
     const { name, category, description, price, image } = req.body
     const required = [name, category, description, price, image]
@@ -44,7 +45,7 @@ export async function createProduct(req, res) {
   }
 }
 
-export async function updateProduct(req, res) {
+export async function updateProduct(req: Request, res: Response) {
   try {
     const { id } = req.params
     const updates = req.body
@@ -60,7 +61,7 @@ export async function updateProduct(req, res) {
     return res.status(400).json({ error: 'Bad request  ' })
   }
 }
-export async function deleteProduct(req, res) {
+export async function deleteProduct(req: Request, res: Response) {
   try {
     const { id } = req.params
     const deletedP = await Product.findByIdAndDelete(id)
