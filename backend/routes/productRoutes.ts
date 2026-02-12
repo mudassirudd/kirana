@@ -1,4 +1,5 @@
 import express from 'express'
+import { Router } from 'express'
 import { auth } from '../middlewares/auth.js'
 import { adminOnly } from '../middlewares/adminOnly.js'
 import {
@@ -9,7 +10,7 @@ import {
   deleteProduct,
 } from '../controllers/productController.js'
 
-const productRouter = express.Router()
+const productRouter: Router = express.Router()
 
 productRouter.get('/', getProducts)
 productRouter.get('/:id', getProductById)

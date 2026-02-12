@@ -7,14 +7,17 @@ export interface TokenPayload {
   id: string
   role: 'user' | 'admin'
 }
-export interface AuthenticatedRequest extends Request {
-  user: TokenPayload
+
+// This tells TypeScript: "Every Express Request CAN have a user property"
+declare global {
+  namespace Express {
+    interface Request {
+      user?: TokenPayload
+    }
+  }
 }
-export function auth(
-  req: AuthenticatedRequest,
-  res: Response,
-  next: NextFunction,
-) {
+
+export function auth(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization
   if (!authHeader) {
     return res.status(401).json({ error: 'No token provided' })

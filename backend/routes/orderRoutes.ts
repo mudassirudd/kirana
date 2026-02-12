@@ -1,4 +1,5 @@
 import express from 'express'
+import { Router } from 'express'
 import { auth } from '../middlewares/auth.js'
 import { adminOnly } from '../middlewares/adminOnly.js'
 import {
@@ -9,7 +10,7 @@ import {
   updateOrderStatusById,
 } from '../controllers/orderController.js'
 
-const orderRouter = express.Router()
+const orderRouter: Router = express.Router()
 
 orderRouter.post('/', auth, placeOrder)
 orderRouter.get('/orders', auth, getOrders)

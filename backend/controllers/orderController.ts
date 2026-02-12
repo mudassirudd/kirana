@@ -1,12 +1,11 @@
-import type { AuthenticatedRequest } from '../middlewares/auth.js'
 import { Order } from '../models/order.js'
 import { Product } from '../models/product.js'
 import type { Request, Response } from 'express'
 
-export async function placeOrder(req: AuthenticatedRequest, res: Response) {
+export async function placeOrder(req: Request, res: Response) {
   try {
     const { items } = req.body
-    const userId = req.user.id
+    const userId = req.user!.id
 
     // 1. Initial Validation
     if (!Array.isArray(items) || items.length === 0) {
@@ -54,16 +53,16 @@ export async function placeOrder(req: AuthenticatedRequest, res: Response) {
   }
 }
 
-export async function getOrders(req: AuthenticatedRequest, res: Response) {
+export async function getOrders(req: Request, res: Response) {
   try {
-    const user = req.user.id
+    const user = req.user!.id
     const orders = await Order.find({ userId: user })
     return res.status(200).json({ orders })
   } catch (error) {
     return res.status(500).json({ error: 'Server Error' })
   }
 }
-export async function getAllOrders(req: AuthenticatedRequest, res: Response) {
+export async function getAllOrders(req: Request, res: Response) {
   try {
     const orders = await Order.find().populate('userId', 'email')
     return res.status(200).json({ orders })
@@ -71,7 +70,7 @@ export async function getAllOrders(req: AuthenticatedRequest, res: Response) {
     return res.status(500).json({ error: 'Server Error' })
   }
 }
-export async function getOrderById(req: AuthenticatedRequest, res: Response) {
+export async function getOrderById(req: Request, res: Response) {
   try {
     const order = await Order.findById(req.params.id).populate(
       'userId',
@@ -86,10 +85,7 @@ export async function getOrderById(req: AuthenticatedRequest, res: Response) {
   }
 }
 
-export async function updateOrderStatusById(
-  req: AuthenticatedRequest,
-  res: Response,
-) {
+export async function updateOrderStatusById(req: Request, res: Response) {
   try {
     const id = req.params.id
     const { status } = req.body

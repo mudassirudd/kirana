@@ -17,6 +17,6 @@ app.get('/', (req, res) => {
   res.send({ message: 'API working' })
 })
 
-app.listen(process.env.PORT || 5000, (req, res) => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`Server running on port:${process.env.PORT}`)
 })
