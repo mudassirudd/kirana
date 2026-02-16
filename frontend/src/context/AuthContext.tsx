@@ -1,11 +1,41 @@
-import {createContext,useState} from 'react'
+import {createContext,useState, type ReactNode} from 'react'
 import {useNavigate} from 'react-router-dom'
 import { useCart } from '../hooks/useCart';
 const API_URL = import.meta.env.VITE_API_BASE_URL; 
 
-export const AuthContext = createContext()
+declare global {
+  interface ImportMetaEnv {
+    readonly VITE_API_BASE_URL: string
+  }
+  interface ImportMeta {
+    readonly env: ImportMetaEnv
+  }
+}
 
-export function AuthProviderComponent ({children}){
+interface User {
+  email: string
+  role: 'user' | 'admin'
+}
+
+export interface AuthContextType {
+  user: User | null
+  token: string | null
+  login: (email: string, password: string) => Promise<{error: string} | undefined>
+  register: (email: string, password: string) => Promise<{error: string} | undefined>
+  logout: () => void
+  
+}
+
+
+
+export const AuthContext = createContext<AuthContextType|undefined>(undefined)
+
+export interface AuthProviderComponentProps{
+  children:ReactNode
+}
+
+export function AuthProviderComponent ({children}:AuthProviderComponentProps){
+  
   const {clearCart} = useCart()
   //restore session
  const [user, setUser] = useState(() => {
@@ -22,7 +52,7 @@ export function AuthProviderComponent ({children}){
 
   
   // LOGIN
-  async function login(email,password) {
+  async function login(email:string,password:string) {
 
     const res = await fetch (`${API_URL}/auth/login`,{
       method:"POST",
@@ -45,7 +75,7 @@ export function AuthProviderComponent ({children}){
   }
 
   // REGISTER
-  async function register (email,password) {
+  async function register (email:string,password:string) {
     const res = await fetch(`${API_URL}/auth/register`,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
