@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     //language and environment
-    "lib": ["ES2022"],
+    "lib": ["ES2022","DOM","DOM.Iterable"],
     "target": "es2022",
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -21,8 +21,10 @@
     "skipLibCheck": true,
 
     // build
+    "rootDir": "./src",
     "outDir": "./dist"
   },
+  "include": ["src"],
   "exclude": [
     "node_modules","dist"
   ]
