@@ -1,4 +1,15 @@
-export default function ProductCard({product}){
+
+export interface Product {
+  _id:string
+  image:string
+  description:string
+  name:string
+  price:number
+}
+export interface ProductProp{
+  product:Product
+}
+export default function ProductCard({product}:ProductProp){
   // console.log(product.image)
   return(
     <>

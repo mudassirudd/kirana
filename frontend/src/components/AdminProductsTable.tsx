@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom"
+import type { Product } from "./ProductCard"
 
-export default function AdminProductsTable({products,handleDelete}) {
+export interface AdminProductsTableProps{
+  products:Product[]
+  handleDelete:(id:string)=>void
+
+}
+
+
+export default function AdminProductsTable({products,handleDelete}:AdminProductsTableProps) {
   return(
     
          <table>
@@ -32,4 +40,8 @@ export default function AdminProductsTable({products,handleDelete}) {
       
     
   )
+}export interface AdminProductsTableProps{
+  products:Product[]
+  handleDelete:(id:string)=>void
+
 }

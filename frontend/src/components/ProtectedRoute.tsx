@@ -1,8 +1,12 @@
 // import { Children } from "react";
 import { Navigate } from "react-router-dom";
 import {useAuth} from '../hooks/useAuth.js'
+import type { ReactNode } from "react";
 
-export default function ProtectedRoute ({children}){
+export interface ProtectedRouteProp{
+  children:ReactNode
+}
+export default function ProtectedRoute ({children}:ProtectedRouteProp){
 
   const {token} =  useAuth()
 
