@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
-import ProductCard from "../components/ProductCard"
+import ProductCard, { type Product } from "../components/ProductCard"
 import AdminProductsTable from "../components/AdminProductsTable"
 import {useAuth} from '../hooks/useAuth'
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 export default function AdminProductsPage() {
 
-  const [products,setProducts]=useState([])
+  const [products,setProducts]=useState<Product[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string|null>(null)
 
   const {token} = useAuth()
 
@@ -34,7 +34,7 @@ export default function AdminProductsPage() {
     fetchProducts()
   },[])
 
-  async function handleDelete(id) {
+  async function handleDelete(id:string) {
     const ok = window.confirm("Delete this product? This cannot be undone.")
     if (!ok) return
    

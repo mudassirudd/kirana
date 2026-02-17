@@ -8,7 +8,7 @@ const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default function CartPage() {
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+const [error, setError] = useState<string | null>(null)
 
   const {token} = useAuth()
   const {cart,updateQty,clearCart,removeFromCart} =useCart()
@@ -63,7 +63,7 @@ export default function CartPage() {
 if (cart.length === 0)return <p>Your cart is empty.</p> 
   return(
     <div className='flex flex-col items-center justify-center gap-7'>
-      <h1 className='text-center font-bold text-2xl sm:text-3xl' text>CartPage</h1>
+      <h1 className='text-center font-bold text-2xl sm:text-3xl' >CartPage</h1>
       <table>
         <thead>
       <tr>
@@ -87,7 +87,7 @@ if (cart.length === 0)return <p>Your cart is empty.</p>
                 <button className=' mx-1.5  text-xl cursor-pointer ' onClick={()=>updateQty(item._id,item.quantity - 1)}>
                   -
                   </button>
-                  <span className='border border-black bg-white p-[1px]'>{item.quantity}</span>
+                  <span className='border border-black bg-white p-px'>{item.quantity}</span>
                 <button className='mx-1.5  text-xl cursor-pointer ' onClick={()=>updateQty(item._id,item.quantity + 1)}>+</button>
                 <button className='cursor-pointer' onClick={()=>removeFromCart(item._id)}> 🗑️</button>
 

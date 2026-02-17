@@ -4,18 +4,18 @@ const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 export default function CreateProduct() {
-  const [error,setError]=useState(null)
-  const [success,setSuccess]=useState(null)
+  const [error,setError]=useState<string|null>(null)
+  const [success,setSuccess]=useState<string|null>(null)
 
   const {token} = useAuth()
   
-  async function handleCreate(formData) {
+  async function handleCreate(formData:FormData) {
 
-    const name = formData.get("name")
-    const  category= formData.get("category")
-    const  description= formData.get("description")
-    const  price= formData.get("price")
-    const  image= formData.get("image")
+    const name = formData.get("name") as string
+    const  category= formData.get("category") as string
+    const  description= formData.get("description") as string
+    const  price= formData.get("price") as string
+    const  image= formData.get("image") as string
     
     const res = await fetch(`${API_URL}/products`,{
       method:"POST",

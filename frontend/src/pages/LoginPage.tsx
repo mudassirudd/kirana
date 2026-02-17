@@ -2,18 +2,18 @@ import React from 'react'
 import {useAuth} from '../hooks/useAuth'
 
 export default function LoginPage() {
-  const [error,setError]= React.useState()
+  const [error,setError]= React.useState<string|null>(null)
   const {login} = useAuth()
   
-  async function handleLogin(formData) {
+  async function handleLogin(formData:FormData) {
     setError(null)
-    const email=formData.get("email")
-    const password = formData.get("password")
+    const email=formData.get("email") as string
+    const password = formData.get("password") as string
 
     const result = await login(email,password)
 
 
-    if (result.error) {
+    if (result?.error) {
       return setError(result.error)
     }
 

@@ -3,19 +3,19 @@ import {useAuth} from '../hooks/useAuth'
 
 
 export default function RegisterPage() {
-  const [error,setError] = React.useState(null)
+  const [error,setError] = React.useState<string|null>(null)
   const {register} = useAuth()
 
 
 
 
-  async function handleRegister(formData) {
+  async function handleRegister(formData:FormData) {
      setError(null)
 
-    const email = formData.get("email")
-    const password = formData.get("password")
+    const email = formData.get("email") as string
+    const password = formData.get("password") as string
     const result = await register(email,password)
-    if (result.error){
+    if (result?.error){
       setError(result.error)
     }
   }
