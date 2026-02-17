@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import {useAuth} from '../hooks/useAuth.js'
+import {useAuth} from '../hooks/useAuth'
+import type { Order, OrderItem } from "./OrdersPage";
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 export default function OrdersPage() {
   const {token } = useAuth()
-  const [error,setError] = useState(null)
-  const [loading,setLoading] = useState(null)
-  const [order,setOrder] = useState({})
+  const [error,setError] = useState<string|null>(null)
+  const [loading,setLoading] = useState<boolean>(false)
+  const [order,setOrder] = useState<Order|null>(null)
 
   const {id} = useParams()
 
@@ -36,7 +37,7 @@ export default function OrdersPage() {
   },[id,token])
 
 
-  async function handleStatus (e) {
+  async function handleStatus (e:React.ChangeEvent<HTMLSelectElement>) {
     const status = e.target.value 
     const res = await fetch(`${API_URL}/order/${id}`,{
       method:"PATCH",
@@ -51,7 +52,7 @@ export default function OrdersPage() {
     if (!res.ok) {
       return setError(data.error)
     }
-    setOrder(prev=>({...prev, status: data.status}))
+    setOrder(prev=>(prev ? {...prev, status: data.status}:prev))
 
   }
 
@@ -75,12 +76,14 @@ export default function OrdersPage() {
 // }
 
   
-  if(loading) return <h2>Loading...</h2>
-  if(error) return <h2>{error}</h2>
+if(loading) return <h2>Loading...</h2>
+if(error) return <h2>{error}</h2>
+if(!order) return null
 
 
   return(
-<div className='flex flex-col items-center justify-center gap-7 text-center'>    <h3>BY: {order?.userId?.email}</h3>
+<div className='flex flex-col items-center justify-center gap-7 text-center'>    <h3>BY: {typeof order.userId === 'object' ? order.userId.email : order.userId}
+</h3>
       <table>
         <thead>
           <tr>

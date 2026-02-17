@@ -1,16 +1,17 @@
 import { useEffect,useState } from "react"
 import {useAuth} from '../hooks/useAuth'
+import { Link } from "react-router-dom"
+import type { Order } from "./OrdersPage";
 const API_URL = import.meta.env.VITE_API_BASE_URL;
-
 
 export default function OrdersPage() {
   const {token} = useAuth() 
 
-  const [orders,setOrders] = useState([])
+  const [orders,setOrders] = useState<Order[]>([])
 
   useEffect(()=>{
     async function fetchOrders() {
-      const res = await fetch(`${API_URL}/order/orders`,{
+      const res = await fetch(`${API_URL}/order/all-orders`,{
         method:"GET",
         headers:{
           "Content-Type":"application/json",
@@ -68,10 +69,12 @@ export default function OrdersPage() {
   //     "__v": 0
   //   }]
   return(
-<div className='flex flex-col items-center text-center  gap-7'>        <h1 className="text-center font-bold text-2xl sm:text-3xl">Your Orders</h1>
+<div className='flex flex-col items-center justify-center gap-7'>        <h1 className="text-center font-bold text-2xl sm:text-3xl">All Orders</h1>
       {orders.map((order, orderIndex) => (
-    <div className="flex flex-col items-center" key={order._id} style={{ marginBottom: '2rem' }}>
+      <Link to={`/order/${order._id}`} key={order._id}>
+        <div key={order._id} className="bg-gray-200 rounded-3xl p-2 min-h-55 w-[320px] mb-4 flex flex-col items-center gap-2">
       <h3>Order #{orderIndex + 1}</h3>
+      <h3>BY: {typeof order.userId === 'object'?order.userId.email:order.userId}</h3>
       <table>
         <thead>
           <tr>
@@ -79,6 +82,7 @@ export default function OrdersPage() {
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -88,13 +92,14 @@ export default function OrdersPage() {
               <td>{item.name}</td>
               <td>{item.price}</td>
               <td>{item.quantity}</td>
+              <td>{order.status}</td>
             </tr>
           ))}
         </tbody>
       </table>
       <strong>Total: ${order.total}</strong>
-      <hr />
     </div>
+    </Link>
 ))}
     </div>
   )
