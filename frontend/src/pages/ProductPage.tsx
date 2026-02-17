@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useCart } from '../hooks/useCart'
+import type { Product } from '../components/ProductCard';
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 
@@ -9,9 +10,9 @@ export default function ProductPage(){
   const {id}= useParams()
   // console.log(id)
   
-  const [product,setProduct] = React.useState(null)
+  const [product,setProduct] = React.useState<Product>()
   const [loading,setLoading] = React.useState(true)
-  const [error,setError] = React.useState(null)
+  const [error,setError] = React.useState<string|null>(null)
   
 
   React.useEffect(()=>{
@@ -27,7 +28,10 @@ export default function ProductPage(){
       const data = await res.json()
       setProduct(data.product)
     } catch (err){
-      setError(err.message)
+      if(err instanceof Error){
+
+        setError(err.message)
+      }
     }finally{
       setLoading(false)
     }
@@ -41,6 +45,7 @@ export default function ProductPage(){
 
   if(loading) return <h2>Loading...</h2>
   if(error) return <h2>{error}</h2>
+  if (!product) return null
    
     return(
      <div className =" mt-10">

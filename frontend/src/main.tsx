@@ -1,13 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 // import './App.css'
-import App from './App.jsx'
+import App from './App.js'
 import   './index.css'
 import {BrowserRouter} from 'react-router-dom'
-import { AuthContext, AuthProviderComponent } from './context/AuthContext.jsx'
-import { CartContextProvider } from './context/CartContext.jsx'
+import { AuthContext, AuthProviderComponent } from './context/AuthContext.js'
+import { CartContextProvider } from './context/CartContext.js'
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <CartContextProvider>

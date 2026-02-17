@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import {useNavigate, useParams} from 'react-router-dom'
 import {useAuth} from '../hooks/useAuth'
+import type { Product } from '../components/ProductCard';
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 
@@ -14,7 +15,7 @@ export default function EditProductPage () {
   const [name,setName]=useState("")
   const [category,setCategory]=useState("")
   const [description,setDescription]=useState("")
-  const [price,setPrice]=useState("")
+  const [price,setPrice]=useState<number>() 
   const [image,setImage]=useState("")
 
  useEffect(()=>{
@@ -22,7 +23,7 @@ export default function EditProductPage () {
 try {
   const res = await fetch(`${API_URL}/products/${id}`)
 
-  const data = await res.json()
+  const data = await res.json() as {product:Product}
 
   setName(data.product.name)
   setCategory(data.product.category)
@@ -46,7 +47,7 @@ fetchProduct()
 
 
 
- async function handleUpdate(e) {
+ async function handleUpdate(e:React.FormEvent<HTMLFormElement>) {
   e.preventDefault()
   const updatedObject ={
     name, 
@@ -99,7 +100,7 @@ if (loading) return <p>Loading...</p>
       
         <label>Price
         </label>
-          <input type="number"  value={price} onChange={(e)=>setPrice(e.target.value)} />
+          <input type="number"  value={price} onChange={(e)=>setPrice(Number(e.target.value))} />
         
         <label>Image
         </label>

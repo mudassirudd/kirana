@@ -5,6 +5,7 @@ export interface Product {
   description:string
   name:string
   price:number
+  category:string
 }
 export interface ProductProp{
   product:Product

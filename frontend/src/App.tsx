@@ -52,7 +52,7 @@ export default function App() {
     <Link to='/cart' style={{position:"relative"}}>
         🛒 {totalItems > 0 && <span className='badge'>{totalItems}</span>}
       </Link>
-      <Link onClick={logout}>Logout</Link>
+      <Link onClick={logout} to={'/auth/login'}>Logout</Link>
 
       {user?.role==='admin' && 
        <>
